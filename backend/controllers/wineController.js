@@ -1,47 +1,74 @@
 const asyncHandler = require('express-async-handler')
 
+const Bottle = require('../models/bottleModel')
+
 //desc: get all wines
 //route: GET api/wines
 //access: private
 const getWines = asyncHandler(async (req, res) => {
 
-        res.status(200).json({ message: 'Get wines' })
-        
+    const bottles = await Bottle.find()
+
+    res.status(200).json(bottles)
+
 })
 
 //desc: add wine
 //route: POST api/wines
 //access: private
-const addWine =  asyncHandler(async (req, res) => {
+const addWine = asyncHandler(async (req, res) => {
 
-    if (!req.body.text) { 
+    if (!req.body.text) {
         res.status(400)
         throw new Error('no text field')
     }
 
-    console.log(req.body)
-    res.status(200).json({message: 'Add wine'})
+    const bottle = await Bottle.create({
+        text: req.body.text
+    })
+    res.status(200).json(bottle)
 })
 
 //desc: get one wine
 //route: GET api/wines/:id
 //access: private
 const getWine = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Get wine ${req.params.id}`})
+    res.status(200).json({ message: `Get wine ${req.params.id}` })
 })
 
 //desc: edit wine
 //route: PUT api/wines/:id
 //access: private
 const editWine = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Update wine ${req.params.id}`})
+    const bottle = await Bottle.findById(req.params.id)
+
+    if (!bottle) {
+        res.status(400)
+        throw new Error('no such bottle found')
+    }
+
+    const updatedBottle = await Bottle.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
+    })
+
+    res.status(200).json(updatedBottle)
 })
 
 //desc: delete wine
 //route: DELETE api/wines/:id
 //access: private
 const deleteWine = asyncHandler(async (req, res) => {
-    res.status(200).json({message: `Delete wine ${req.params.id}`})
+
+    const bottle = await Bottle.findById(req.params.id)
+
+    if (!bottle) {
+        res.status(400)
+        throw new Error('no such bottle found')
+    }
+
+    const deletedBottle = await Bottle.deleteOne(bottle)
+    
+    res.status(200).json(deletedBottle)
 })
 
 module.exports = {
