@@ -1,3 +1,5 @@
+//TODO: 'text' is a placeholder req parameter. update with correct parameters once the model has been updated.
+
 const asyncHandler = require('express-async-handler')
 
 const Bottle = require('../models/bottleModel')
@@ -18,7 +20,7 @@ const getWines = asyncHandler(async (req, res) => {
 //access: private
 const addWine = asyncHandler(async (req, res) => {
 
-    if (!req.body.text) {
+    if (!req.body.text) { //this should be updated with whatever required fields we end up having
         res.status(400)
         throw new Error('no text field')
     }
@@ -33,7 +35,15 @@ const addWine = asyncHandler(async (req, res) => {
 //route: GET api/wines/:id
 //access: private
 const getWine = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: `Get wine ${req.params.id}` })
+
+    const bottle = await Bottle.findById(req.params.id)
+
+    if (!bottle) {
+        res.status(400)
+        throw new Error('no such bottle found')
+    }
+
+    res.status(200).json(bottle)
 })
 
 //desc: edit wine
