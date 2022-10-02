@@ -3,13 +3,14 @@
 const asyncHandler = require('express-async-handler')
 
 const Bottle = require('../models/bottleModel')
+const User = require('../models/userModel')
 
 //desc: get all wines
 //route: GET api/wines
 //access: private
 const getWines = asyncHandler(async (req, res) => {
 
-    const bottles = await Bottle.find()
+    const bottles = await Bottle.find({user: req.user.id})
 
     res.status(200).json(bottles)
 
@@ -26,7 +27,8 @@ const addWine = asyncHandler(async (req, res) => {
     }
 
     const bottle = await Bottle.create({
-        text: req.body.text
+        text: req.body.text,
+        user: req.user.id
     })
     res.status(200).json(bottle)
 })
@@ -57,6 +59,21 @@ const editWine = asyncHandler(async (req, res) => {
         throw new Error('no such bottle found')
     }
 
+    const user = await User.findById(req.user.id)
+
+    //check for user
+    if (!user) {
+        res.status(401)
+        throw new Error('no user')
+    }
+
+    //confirm req comes from bottle creator
+    if (bottle.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('unauthorized user')
+    }
+
+
     const updatedBottle = await Bottle.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     })
@@ -75,6 +92,21 @@ const deleteWine = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('no such bottle found')
     }
+
+    const user = await User.findById(req.user.id)
+
+    //check for user
+    if (!user) {
+        res.status(401)
+        throw new Error('no user')
+    }
+
+    //confirm req comes from bottle creator
+    if (bottle.user.toString() !== user.id) {
+        res.status(401)
+        throw new Error('unauthorized user')
+    }
+
 
     const deletedBottle = await Bottle.deleteOne(bottle)
     
