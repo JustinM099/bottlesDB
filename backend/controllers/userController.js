@@ -80,7 +80,8 @@ const getMe = asyncHandler(async (req, res) => {
     })
 })
 
-//generate jwt
+//generate jwt -- this is called in loginUser in order to create a token in the response that can be verified by the authMiddleware. authMiddleware is put into the wineRoutes.
+//if its not verified, the authMiddleware prevents requests from going through.
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d',
