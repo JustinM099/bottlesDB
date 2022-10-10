@@ -71,13 +71,8 @@ const loginUser = asyncHandler(async (req, res) => {
 //route: GET api/users/me
 //access: private
 const getMe = asyncHandler(async (req, res) => {
-    const { _id, name, email } = await User.findById(req.user.id)
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email
-    })
+    res.status(200).json(req.user)
 })
 
 //generate jwt -- this is called in loginUser in order to create a token in the response that can be verified by the authMiddleware. authMiddleware is put into the wineRoutes.

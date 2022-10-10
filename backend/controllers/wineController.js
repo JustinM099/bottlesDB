@@ -59,16 +59,15 @@ const editWine = asyncHandler(async (req, res) => {
         throw new Error('no such bottle found')
     }
 
-    const user = await User.findById(req.user.id)
 
     //check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('no user')
     }
 
     //confirm req comes from bottle creator
-    if (bottle.user.toString() !== user.id) {
+    if (bottle.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('unauthorized user')
     }
@@ -93,16 +92,15 @@ const deleteWine = asyncHandler(async (req, res) => {
         throw new Error('no such bottle found')
     }
 
-    const user = await User.findById(req.user.id)
 
     //check for user
-    if (!user) {
+    if (!req.user) {
         res.status(401)
         throw new Error('no user')
     }
 
     //confirm req comes from bottle creator
-    if (bottle.user.toString() !== user.id) {
+    if (bottle.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('unauthorized user')
     }
