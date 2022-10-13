@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 import { deleteBottle } from '../features/bottles/bottleSlice'
 
+
 const BottleItem = ({ bottle }) => {
     
     const dispatch = useDispatch()

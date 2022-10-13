@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
@@ -5,10 +6,15 @@ import BottleForm from '../components/BottleForm'
 import Spinner from '../components/Spinner'
 import { getBottles, reset } from '../features/bottles/bottleSlice'
 import BottleItem from '../components/BottleItem'
+import { Modal, Button, Card, CardContent } from '@mui/material'
 
 
 
-function Dashboard() {
+const Dashboard = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -43,7 +49,8 @@ function Dashboard() {
                 <p>track your cellar here</p>
             </section>
             <BottleForm />
-
+            <br />
+            <br />
             <section className="content">
                 {bottles.length > 0 ? (
                     <div className="bottles">
