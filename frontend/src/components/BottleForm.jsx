@@ -10,14 +10,22 @@ function BottleForm() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const [text, setText] = useState('')
+    const [producer, setProducer] = useState('')
+    const [vintage, setVintage] = useState('')
+    const [wineName, setWineName] = useState('')
+    const [variety, setVariety] = useState('')
+    const [region, setRegion] = useState('')
+    const [quantity, setQuantity] = useState('')
+    const [notes, setNotes] = useState('')
+    const [location, setLocation] = useState('')
+
     const dispatch = useDispatch()
 
     const onSubmit = e => {
         e.preventDefault()
 
-        dispatch(createBottle({ text }))
-        setText('')
+        dispatch(createBottle({ producer, vintage, wineName, variety, region, quantity, notes, location }))
+        setProducer('')
     }
     return (
         <>
@@ -38,13 +46,83 @@ function BottleForm() {
                         <section className="form">
                             <form onSubmit={onSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="text">bottle</label>
+                                    <label htmlFor="producer">producer</label>
                                     <input
                                         type="text"
-                                        name="text"
-                                        id="text"
-                                        value={text}
-                                        onChange={(e) => setText(e.target.value)}
+                                        name="producer"
+                                        id="producer"
+                                        value={producer}
+                                        onChange={(e) => setProducer(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">vintage</label>
+                                    <input
+                                        type="number"
+                                        name="vintage"
+                                        id="vintage"
+                                        value={vintage}
+                                        onChange={(e) => setVintage(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">wine name</label>
+                                    <input
+                                        type="text"
+                                        name="wineName"
+                                        id="wineName"
+                                        value={wineName}
+                                        onChange={(e) => setWineName(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">variety</label>
+                                    <input
+                                        type="text"
+                                        name="variety"
+                                        id="variety"
+                                        value={variety}
+                                        onChange={(e) => setVariety(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">region</label>
+                                    <input
+                                        type="text"
+                                        name="region"
+                                        id="region"
+                                        value={region}
+                                        onChange={(e) => setRegion(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">quantity</label>
+                                    <input
+                                        type="number"
+                                        name="quantity"
+                                        id="quantity"
+                                        value={quantity}
+                                        onChange={(e) => setQuantity(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">notes</label>
+                                    <input
+                                        type="text"
+                                        name="notes"
+                                        id="notes"
+                                        value={notes}
+                                        onChange={(e) => setNotes(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="producer">cellar location</label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        id="location"
+                                        value={location}
+                                        onChange={(e) => setLocation(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">

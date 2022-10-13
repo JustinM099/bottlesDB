@@ -7,9 +7,30 @@ const bottleSchema = mongoose.Schema({
         required: true,
         ref: 'User'
     },
-    text: {
+    producer: {
         type: String,
-        required: [true, 'text value required']
+        required: [true, 'producer value required']
+    },
+    vintage: {
+        type: Number,
+    },
+    wineName: {
+        type: String
+    },
+    variety: {
+        type: String
+    },
+    region: {
+        type: String
+    },
+    quantity: {
+        type: Number
+    },
+    notes: {
+        type: String
+    },
+    location: {
+        type: String
     }
 }, {
     timestamps: true

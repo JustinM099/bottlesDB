@@ -21,13 +21,20 @@ const getWines = asyncHandler(async (req, res) => {
 //access: private
 const addWine = asyncHandler(async (req, res) => {
 
-    if (!req.body.text) { //this should be updated with whatever required fields we end up having
+    if (!req.body.producer) { //this should be updated with whatever required fields we end up having
         res.status(400)
-        throw new Error('no text field')
+        throw new Error('no producer field')
     }
 
     const bottle = await Bottle.create({
-        text: req.body.text,
+        producer: req.body.producer,
+        vintage: req.body.vintage,
+        wineName: req.body.wineName,
+        variety: req.body.variety,
+        region: req.body.region,
+        quantity: req.body.quantity,
+        notes: req.body.notes,
+        location: req.body.location,
         user: req.user.id
     })
     res.status(200).json(bottle)
