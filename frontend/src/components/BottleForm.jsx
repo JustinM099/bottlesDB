@@ -38,10 +38,12 @@ function BottleForm() {
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
                 }}
             >
-                <Card>
+                <Card style={{
+                    width: '90%'
+                }}>
                     <CardContent>
                         <section className="form">
                             <form onSubmit={onSubmit}>

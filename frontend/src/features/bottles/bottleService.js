@@ -42,12 +42,27 @@ const deleteBottle = async (bottleId, token) => {
     return response.data
 }
 
+//edit bottle
+const editBottle = async (bottleData, bottleId, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    const response = await axios.put(API_URL + bottleId, bottleData, config)
+    window.location.reload()
+
+    return response.data
+}
+
 
 
 const bottleService = {
     createBottle,
     getBottles,
-    deleteBottle
+    deleteBottle,
+    editBottle
 }
 
 export default bottleService

@@ -42,6 +42,17 @@ export const deleteBottle = createAsyncThunk('bottles/delete', async (id, thunkA
     }
 })
 
+//edit bottle
+export const editBottle = createAsyncThunk('bottles/edit', async (bottleData, id, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await bottleService.editBottle(bottleData, id, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 
 export const bottleSlice = createSlice({
     name: 'bottle',
@@ -88,6 +99,19 @@ export const bottleSlice = createSlice({
                 )
             })
             .addCase(deleteBottle.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(editBottle.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(editBottle.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.bottles.push(action.payload)
+            })
+            .addCase(editBottle.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
