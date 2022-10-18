@@ -43,14 +43,14 @@ const deleteBottle = async (bottleId, token) => {
 }
 
 //edit bottle
-const editBottle = async (bottleData, bottleId, token) => {
+const editBottle = async (bottleId, bottleData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
-
-    const response = await axios.put(API_URL + bottleId, bottleData, config)
+    console.log('BOTTLE SERVICE EDIT BOTTLE TRIGGERED. bottleId: ', bottleId, 'bottleData: ', bottleData, 'token: ' + token)
+    const response = await axios.put(API_URL + bottleData.bottleId, bottleData, config)
     window.location.reload()
 
     return response.data

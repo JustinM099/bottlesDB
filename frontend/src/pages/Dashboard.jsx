@@ -6,14 +6,9 @@ import BottleForm from '../components/BottleForm'
 import Spinner from '../components/Spinner'
 import { getBottles, reset } from '../features/bottles/bottleSlice'
 import BottleItem from '../components/BottleItem'
-import { Modal, Button, Card, CardContent } from '@mui/material'
-
 
 
 const Dashboard = () => {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -23,7 +18,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (isError) {
-            console.log(message)
+            console.log('ERROR: ', message)
         }
 
         if (!user) {

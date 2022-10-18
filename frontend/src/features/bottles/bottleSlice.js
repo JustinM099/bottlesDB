@@ -12,6 +12,7 @@ const initialState = {
 //add new bottle
 export const createBottle = createAsyncThunk('bottles/create', async (bottleData, thunkAPI) => {
     try {
+        console.log('THUNKAPI from CREATE: ', thunkAPI)
         const token = thunkAPI.getState().auth.user.token
         return await bottleService.createBottle(bottleData, token)
     } catch (error) {
@@ -43,12 +44,17 @@ export const deleteBottle = createAsyncThunk('bottles/delete', async (id, thunkA
 })
 
 //edit bottle
-export const editBottle = createAsyncThunk('bottles/edit', async (bottleData, id, thunkAPI) => {
+export const editBottle = createAsyncThunk('bottles/edit', async(bottleData, thunkAPI) => {
     try {
+        console.log('EDIT BOTTLE TRIGGERED. thunkAPI: ', thunkAPI)
+        console.log('EDUT BOTTLE bottleData: ', bottleData)
         const token = thunkAPI.getState().auth.user.token
-        return await bottleService.editBottle(bottleData, id, token)
+        return await bottleService.editBottle(bottleData._id, bottleData,
+            token
+        )
     } catch (error) {
         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        console.log(message)
         return thunkAPI.rejectWithValue(message)
     }
 })

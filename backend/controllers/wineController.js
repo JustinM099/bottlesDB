@@ -21,7 +21,7 @@ const getWines = asyncHandler(async (req, res) => {
 //access: private
 const addWine = asyncHandler(async (req, res) => {
 
-    if (!req.body.producer) { //this should be updated with whatever required fields we end up having
+    if (!req.body.producer) { 
         res.status(400)
         throw new Error('no producer field')
     }
@@ -68,21 +68,22 @@ const editWine = asyncHandler(async (req, res) => {
 
 
     //check for user
-    if (!req.user) {
-        res.status(401)
-        throw new Error('no user')
-    }
+    // if (!req.user) {
+    //     res.status(401)
+    //     throw new Error('no user')
+    // }
 
     //confirm req comes from bottle creator
-    if (bottle.user.toString() !== req.user.id) {
-        res.status(401)
-        throw new Error('unauthorized user')
-    }
+    // if (bottle.user.toString() !== req.user.id) {
+    //     res.status(401)
+    //     throw new Error('unauthorized user')
+    // }
 
 
     const updatedBottle = await Bottle.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
     })
+    console.log('UPDATED BOTTLE: ', updatedBottle)
 
     res.status(200).json(updatedBottle)
 })

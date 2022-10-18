@@ -25,7 +25,6 @@ function BottleForm() {
         e.preventDefault()
 
         dispatch(createBottle({ producer, vintage, wineName, variety, region, quantity, notes, location }))
-        setProducer('')
     }
     return (
         <>

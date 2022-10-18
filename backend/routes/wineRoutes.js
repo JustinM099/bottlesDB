@@ -4,7 +4,7 @@ const { getWines, addWine, editWine, deleteWine, getWine } = require('../control
 const { protect } = require('../middleware/authMiddleware')
 
 router.route('/').get(protect, getWines).post(protect, addWine)
-router.route('/:id').get(protect, getWine).put(protect, editWine).delete(protect, deleteWine)
+router.route('/:id').get(protect, getWine).put(editWine).delete(protect, deleteWine)
 
 
 module.exports = router
