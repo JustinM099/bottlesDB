@@ -24,7 +24,8 @@ const bottleSchema = mongoose.Schema({
         type: String
     },
     quantity: {
-        type: Number
+        type: Number,
+        min: 0
     },
     notes: {
         type: String

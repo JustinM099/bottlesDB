@@ -102,6 +102,7 @@ function BottleForm() {
                                         type="number"
                                         name="quantity"
                                         id="quantity"
+                                        min="0"
                                         value={quantity}
                                         onChange={(e) => setQuantity(e.target.value)}
                                     />
