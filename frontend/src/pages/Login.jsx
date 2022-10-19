@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { FaSignInAlt } from "react-icons/fa";
+import LoginIcon from '@mui/icons-material/Login';
 import { useSelector, useDispatch } from "react-redux";
-import { useFetcher, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
@@ -58,7 +58,7 @@ function Login() {
         <>
             <section className="heading">
                 <h1>
-                    <FaSignInAlt /> login
+                    <LoginIcon fontSize="large" /> login
                 </h1>
                 <p> log in to your account </p>
             </section>

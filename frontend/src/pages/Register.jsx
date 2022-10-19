@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useFetcher, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { FaUser } from "react-icons/fa";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { register, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 
@@ -64,7 +64,7 @@ function Register() {
     <>
       <section className="heading">
         <h1>
-          <FaUser /> register
+          <AccountCircleIcon fontSize="large" /> register
         </h1>
         <p> please create an account </p>
       </section>

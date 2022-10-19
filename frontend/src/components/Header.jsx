@@ -1,10 +1,12 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import { searchBottles } from "../features/bottles/bottleSlice";
-import { TextField } from "@mui/material";
+import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 
 function Header() {
@@ -40,27 +42,27 @@ function Header() {
                                 <TextField
                                     id="search"
                                     label="search"
-                                    variant="filled"
+                                    variant="standard"
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
                             </form>
                         </li>
                         <li>
-                            <button className="btn" onClick={onLogout}>
-                                <FaSignOutAlt /> logout
-                            </button>
+                            <Button color="inherit" className="btn" onClick={onLogout}>
+                                <LogoutIcon />
+                            </Button>
                         </li>
                     </>
                 ) : (
                     <>
                         <li>
                             <Link to="/login">
-                                <FaSignInAlt /> login
+                                <LoginIcon /> login
                             </Link>
                         </li>
                         <li>
                             <Link to="/register">
-                                <FaUser /> register
+                                <AccountCircleIcon /> register
                             </Link>
                         </li>
                     </>
