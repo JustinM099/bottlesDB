@@ -58,20 +58,19 @@ const editBottle = async (bottleId, bottleData, token) => {
 
 //search bottles
 const searchBottles = async (token, query) => {
-    console.log("SEARCH BOTTLES TRIGGERED")
+    console.log("SEARCH BOTTLES TRIGGERED IN SERVICE")
     const config = {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }
 
-    const response = await axios.get(API_URL, config)
-    console.log('SEARCH RESPONSE: ', response)
-    const filteredResponse = response.filter(bottle => bottle.includes(query))
-
-    console.log('FILTERED RESPONSE: ', filteredResponse)
-
-    return filteredResponse.data
+    try {
+        const response = await axios.get(API_URL, config)
+        return (response.data || []).filter(bottle => Object.values(bottle).toString().includes(query));
+    } catch (error) {
+        console.log("SEARCH BOTTLES SERVICE ERROR: ", error)
+    }
 }
 
 

@@ -135,6 +135,19 @@ export const bottleSlice = createSlice({
                 state.isError = true
                 state.message = action.payload
             })
+            .addCase(searchBottles.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(searchBottles.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.bottles = action.payload
+            })
+            .addCase(searchBottles.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
     }
 })
 
