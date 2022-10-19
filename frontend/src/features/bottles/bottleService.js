@@ -65,9 +65,11 @@ const searchBottles = async (token, query) => {
         }
     }
 
+    const lowerCaseQuery = query.toLowerCase()
+
     try {
         const response = await axios.get(API_URL, config)
-        return (response.data || []).filter(bottle => Object.values(bottle).toString().includes(query));
+        return (response.data || []).filter(bottle => Object.values(bottle).toString().toLowerCase().includes(lowerCaseQuery));
     } catch (error) {
         console.log("SEARCH BOTTLES SERVICE ERROR: ", error)
     }
