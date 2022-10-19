@@ -43,6 +43,7 @@ function Header() {
                                     id="search"
                                     label="search"
                                     variant="standard"
+                                    value={query}
                                     onChange={(e) => setQuery(e.target.value)}
                                 />
                             </form>
