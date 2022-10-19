@@ -59,6 +59,19 @@ export const editBottle = createAsyncThunk('bottles/edit', async(bottleData, thu
     }
 })
 
+//search bottles
+export const searchBottles = createAsyncThunk('bottles/search', async (query, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        console.log("SEARCH SLICE TOKEN: ", token)
+        console.log("SEARCH SLICE QUERY: ", query)
+        return await bottleService.searchBottles(token, query)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 
 export const bottleSlice = createSlice({
     name: 'bottle',

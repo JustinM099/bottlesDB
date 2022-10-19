@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import * as React from 'react'
 import { useState } from 'react'
 import { editBottle, deleteBottle } from '../features/bottles/bottleSlice'
-import { Card, CardContent, Modal } from '@mui/material'
+import { Card, CardContent, Modal, Divider } from '@mui/material'
 
 
 const BottleItem = ({ bottle }) => {
@@ -35,54 +35,25 @@ const BottleItem = ({ bottle }) => {
         dispatch(editBottle({ bottleId, producer, vintage, wineName, variety, region, quantity, notes, location }))
     }
 
-//editbottle from bottleSlice
-// export const editBottle = createAsyncThunk('bottles/edit', async (id, bottleData, thunkAPI) => {
-//     try {
-//         console.log('EDIT BOTTLE TRIGGERED. thunkAPI: ', thunkAPI)
-//         const token = thunkAPI.getState().auth.user.token
-//         return await bottleService.editBottle(id, bottleData, token)
-//     } catch (error) {
-//         const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-//         console.log(message)
-//         return thunkAPI.rejectWithValue(message)
-//     }
-// })
-    
-//editBottle from bottleService
-    
-// const editBottle = async (bottleId, bottleData, token) => {
-//     const config = {
-//         headers: {
-//             Authorization: `Bearer ${token}`
-//         }
-//     }
-//     console.log('BOTTLE SERVICE EDIT BOTTLE TRIGGERED')
-//     const response = await axios.put(API_URL + bottleId, bottleData, config)
-//     window.location.reload()
-
-//     return response.data
-// }
-
-
     return (
-        <div className="bottle" onClick={handleEditOpen}>
+        <Card className="bottle" onClick={handleEditOpen}>
 
-            <div>
+            {/* <div>
                 {new Date(bottle.createdAt).toLocaleString('en-US')}
-            </div>
+            </div> */}
             <h2>{bottle.producer}</h2>
             <p>{bottle.vintage ? 'vintage: ' + bottle.vintage : ''}</p>
-            <hr />
+            {bottle.vintage ? <Divider variant='middle' /> : ''}
             <p>{bottle.wineName ? 'name: ' + bottle.wineName : ''}</p>
-            <hr />
+            {bottle.wineName ? <Divider variant='middle' /> : ''}
             <p>{bottle.variety ? 'wine type: ' + bottle.variety : ''}</p>
-            <hr />
+            {bottle.variety ? <Divider variant='middle' /> : ''}
             <p>{bottle.region ? 'region: ' + bottle.region : ''}</p>
-            <hr />
+            {bottle.region ? <Divider variant='middle' />: ''}
             <p>{bottle.quantity ? 'quantity: ' + bottle.quantity : ''}</p>
-            <hr />
+            {bottle.quantity ? <Divider variant='middle' /> : ''}
             <p>{bottle.notes ? 'notes: ' + bottle.notes : ''}</p>
-            <hr />
+            {bottle.notes ? <Divider variant='middle' /> : ''}
             <p>{bottle.location ? 'cellar location: ' + bottle.location : ''}</p>
             <button className="close" onClick={() => dispatch(deleteBottle(bottle._id))}>x</button>
             <Modal
@@ -190,7 +161,7 @@ const BottleItem = ({ bottle }) => {
                     </CardContent>
                 </Card>
             </Modal>
-        </div>
+        </Card>
     )
 }
 

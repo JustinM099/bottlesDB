@@ -10,12 +10,17 @@
 body {
   font-family: 'Raleway', sans-serif;
   height: 100vh;
-  background-color: darkgrey;
+  background-color: #393E46;
+  color: #222831;
 }
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #222831;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 p {
@@ -53,13 +58,13 @@ hr {
 
 .header {
   display: flex;
-  background-color: grey;
+  background-color: #00ADB5;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 10px 0;
   padding-left: 2px;
   padding-right: 2px;
-  border-bottom: 1px solid grey;
+  box-shadow: 0 1px 10px rgb(14, 13, 13);
   margin-bottom: 60px;
 }
 
@@ -104,10 +109,16 @@ hr {
 }
 
 .bottle {
-  background-color: #f4f4f4;
-  margin: 10px 0;
-  padding: 20px 0 10px;
-  position: relative;
+  background-color: #00ADB5 !important;
+  margin: 10px 0 !important;
+  padding: 20px 0 10px !important;
+  position: relative !important;
+}
+
+.bottle:hover {
+  box-shadow: 0 5px 15px rgb(14, 13, 13);
+  transform: translateY(-7px);
+  cursor: pointer;
 }
 
 .bottle .close {
@@ -166,10 +177,10 @@ hr {
   margin-right: 8px;
 }
 
-.btn-reverse {
+/* .btn-reverse {
   background: #fff;
   color: #000;
-}
+} */
 
 .btn-block {
   width: 100%;
@@ -212,6 +223,13 @@ hr {
 }
 
 @media (max-width: 600px) {
+
+  .bottles {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+
   .form {
     width: 90%;
   }

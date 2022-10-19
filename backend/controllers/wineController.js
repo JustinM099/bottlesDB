@@ -1,4 +1,3 @@
-//TODO: 'text' is a placeholder req parameter. update with correct parameters once the model has been updated.
 
 const asyncHandler = require('express-async-handler')
 
@@ -45,7 +44,7 @@ const addWine = asyncHandler(async (req, res) => {
 //access: private
 const getWine = asyncHandler(async (req, res) => {
 
-    const bottle = await Bottle.findById(req.params.id)
+    const bottles = await Bottle.findById(req.params.id)
 
     if (!bottle) {
         res.status(400)
@@ -53,6 +52,21 @@ const getWine = asyncHandler(async (req, res) => {
     }
 
     res.status(200).json(bottle)
+})
+
+//desc: search for wines by params
+//route: GET api/wines/
+//access: private
+const searchWines = asyncHandler(async (req, res) => {
+
+    const bottles = await Bottle.find({user: req.user.id})
+
+    if (!bottles) {
+        res.status(400)
+        throw new Error('no such bottle found')
+    }
+
+    res.status(200).json(bottles)
 })
 
 //desc: edit wine
@@ -124,5 +138,6 @@ module.exports = {
     addWine,
     getWine,
     editWine,
-    deleteWine
+    deleteWine,
+    searchWines
 }
