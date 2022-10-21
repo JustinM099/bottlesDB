@@ -65,6 +65,7 @@ const BottleItem = ({ bottle }) => {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
+                    overflow: 'scroll'
                 }}
             >
                 <Card style={{

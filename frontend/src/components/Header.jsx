@@ -77,7 +77,7 @@ function Header() {
                                 className="btn"
                                 onClick={onClearSearch}
                             >
-                                clear<ClearIcon />
+                                <ClearIcon fontSize="inherit" />
                             </Button>
                         </li>
                         <li>
