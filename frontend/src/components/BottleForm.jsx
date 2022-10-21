@@ -41,7 +41,8 @@ function BottleForm() {
                 }}
             >
                 <Card style={{
-                    width: '90%'
+                    width: '90%',
+                    maxHeight: '90%'
                 }}>
                     <CardContent>
                         <section className="form">
