@@ -38,12 +38,13 @@ function BottleForm() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    overflow: 'scroll'
+
                 }}
             >
                 <Card style={{
                     width: '90%',
-                    maxHeight: '90%'
+                    maxHeight: '90%',
+                    overflow: 'scroll'
                 }}>
                     <CardContent>
                         <section className="form">
