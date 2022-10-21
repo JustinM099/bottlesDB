@@ -9,7 +9,7 @@ const User = require('../models/userModel')
 //access: private
 const getWines = asyncHandler(async (req, res) => {
 
-    const bottles = await Bottle.find({user: req.user.id})
+    const bottles = await Bottle.find({user: req.user.id}).sort({producer: 'asc'})
 
     res.status(200).json(bottles)
 

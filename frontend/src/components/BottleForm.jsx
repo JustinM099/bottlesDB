@@ -28,7 +28,7 @@ function BottleForm() {
     }
     return (
         <>
-            <Button variant="contained" size="large" color="inherit" onClick={handleOpen}>add wine</Button>
+            <Button variant="outlined" size="large" color="inherit" onClick={handleOpen}>add wine</Button>
             <Modal
                 open={open}
                 onClose={handleClose}

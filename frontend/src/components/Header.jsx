@@ -1,8 +1,11 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import InputAdornment from "@mui/material/InputAdornment";
 import LogoutIcon from '@mui/icons-material/Logout';
 import LoginIcon from '@mui/icons-material/Login';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import { searchBottles } from "../features/bottles/bottleSlice";
@@ -29,6 +32,11 @@ function Header() {
         setQuery('');
     };
 
+    const onClearSearch = (e) => {
+        e.preventDefault();
+        window.location.reload()
+    }
+
     return (
         <header className="header">
             <div className="logo">
@@ -40,13 +48,37 @@ function Header() {
                         <li>
                             <form onSubmit={onSearch}>
                                 <TextField
+                                    InputProps={{
+                                        endAdornment: (
+                                            <InputAdornment position={'end'}>
+                                                <Button
+                                                    color="inherit"
+                                                    className="btn"
+                                                    onClick={onSearch}
+
+                                                >
+                                                    <SearchIcon />
+                                                </Button>
+                                            </InputAdornment>
+                                        )
+                                    }}
                                     id="search"
                                     label="search"
                                     variant="standard"
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
+                                
                                 />
                             </form>
+                        </li>
+                        <li>
+                            <Button
+                                color="inherit"
+                                className="btn"
+                                onClick={onClearSearch}
+                            >
+                                clear<ClearIcon />
+                            </Button>
                         </li>
                         <li>
                             <Button color="inherit" className="btn" onClick={onLogout}>
