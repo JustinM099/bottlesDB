@@ -27,6 +27,9 @@ const bottleSchema = mongoose.Schema({
         type: Number,
         min: 0
     },
+    type: {
+        type: String
+    },
     notes: {
         type: String
     },

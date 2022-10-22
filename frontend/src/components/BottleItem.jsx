@@ -24,6 +24,7 @@ const BottleItem = ({ bottle }) => {
     const [quantity, setQuantity] = useState(bottle.quantity)
     const [notes, setNotes] = useState(bottle.notes)
     const [location, setLocation] = useState(bottle.location)
+    const [type, setType] = useState(bottle.type)
 
 
     const onSubmit = e => {
@@ -32,7 +33,7 @@ const BottleItem = ({ bottle }) => {
 
         e.preventDefault()
         console.log('BOTTLE IN ONSUBMIT FROM BOTTLEITEM: ', bottle)
-        dispatch(editBottle({ bottleId, producer, vintage, wineName, variety, region, quantity, notes, location }))
+        dispatch(editBottle({ bottleId, producer, vintage, wineName, variety, region, quantity, notes, location, type }))
     }
 
     return (
@@ -46,12 +47,14 @@ const BottleItem = ({ bottle }) => {
             {bottle.vintage ? <Divider variant='middle' /> : ''}
             <p>{bottle.wineName ? 'name: ' + bottle.wineName : ''}</p>
             {bottle.wineName ? <Divider variant='middle' /> : ''}
-            <p>{bottle.variety ? 'wine type: ' + bottle.variety : ''}</p>
+            <p>{bottle.variety ? 'grape/blend: ' + bottle.variety : ''}</p>
             {bottle.variety ? <Divider variant='middle' /> : ''}
             <p>{bottle.region ? 'region: ' + bottle.region : ''}</p>
             {bottle.region ? <Divider variant='middle' />: ''}
             <p>{bottle.quantity ? 'quantity: ' + bottle.quantity : ''}</p>
             {bottle.quantity ? <Divider variant='middle' /> : ''}
+            <p>{bottle.type ? 'wine type: ' + bottle.type : ''}</p>
+            {bottle.type ? <Divider variant='middle' /> : ''}
             <p>{bottle.notes ? 'notes: ' + bottle.notes : ''}</p>
             {bottle.notes ? <Divider variant='middle' /> : ''}
             <p>{bottle.location ? 'cellar location: ' + bottle.location : ''}</p>
@@ -125,6 +128,22 @@ const BottleItem = ({ bottle }) => {
                                         value={region}
                                         onChange={(e) => setRegion(e.target.value)}
                                     />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="type">type</label>
+                                    <select
+                                        type="text"
+                                        name="type"
+                                        id="type"
+                                        value={type}
+                                        onChange={(e) => setType(e.target.value)}
+                                    >
+                                        <option value="" selected disabled hidden>choose wine type</option>
+                                        <option value="red wine">red wine</option>
+                                        <option value="white wine">white wine</option>
+                                        <option value="sparkling wine">sparkling wine</option>
+                                        <option value="other">other</option>
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="producer">quantity</label>

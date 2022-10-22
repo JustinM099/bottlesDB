@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import LoginIcon from '@mui/icons-material/Login';
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
@@ -61,6 +61,10 @@ function Login() {
                     <LoginIcon fontSize="large" /> login
                 </h1>
                 <p> log in to your account </p>
+                <p> or </p>
+                <p>
+                    <Link to="/register">register</Link>
+                </p>
             </section>
 
             <section className="form">
