@@ -3,6 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { editBottle, deleteBottle } from '../features/bottles/bottleSlice'
 import { Card, CardContent, Modal, Divider, Button } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear';
 
 
 const BottleItem = ({ bottle }) => {
@@ -70,7 +71,7 @@ const BottleItem = ({ bottle }) => {
             <p>{bottle.notes ? 'notes: ' + bottle.notes : ''}</p>
             {bottle.notes ? <Divider variant='middle' /> : ''}
             <p>{bottle.location ? 'cellar location: ' + bottle.location : ''}</p>
-            <Button className="close" onClick={() => dispatch(deleteBottle(bottle._id))}>x</Button>
+            <button className="close" onClick={() => dispatch(deleteBottle(bottle._id))}><ClearIcon fontSize='small' /></button>
 
             <Modal
                 open={deleteOpen}
