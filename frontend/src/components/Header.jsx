@@ -6,6 +6,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
+import WineBarIcon from '@mui/icons-material/WineBar';
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import { searchBottles } from "../features/bottles/bottleSlice";
@@ -40,7 +41,10 @@ function Header() {
     return (
         <header className="header">
             <div className="logo">
-                <Link to="/">bottlesDb</Link>
+                <Link className="text-logo" to="/">bottlesDb</Link>
+            </div>
+            <div className="logo">
+                <Link className="icon-logo" to="/"><WineBarIcon /></Link>
             </div>
             <ul>
                 {user ? (

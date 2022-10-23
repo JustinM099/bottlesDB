@@ -109,7 +109,7 @@ function BottleForm() {
                                         value={type}
                                         onChange={(e) => setType(e.target.value)}
                                     >
-                                        <option value="" selected disabled hidden>choose wine type</option>
+                                        <option value="" defaultValue disabled hidden>choose wine type</option>
                                         <option value="red wine">red wine</option>
                                         <option value="white wine">white wine</option>
                                         <option value="sparkling wine">sparkling wine</option>

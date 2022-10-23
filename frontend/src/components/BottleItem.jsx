@@ -2,20 +2,22 @@ import { useDispatch } from 'react-redux'
 import * as React from 'react'
 import { useState } from 'react'
 import { editBottle, deleteBottle } from '../features/bottles/bottleSlice'
-import { Card, CardContent, Modal, Divider } from '@mui/material'
+import { Card, CardContent, Modal, Divider, Button } from '@mui/material'
 
 
 const BottleItem = ({ bottle }) => {
 
     const dispatch = useDispatch()
     
-    const [editOpen, setEditOpen] = React.useState(false)
+    //open edit form
+    const [editOpen, setEditOpen] = useState(false)
     const handleEditOpen = () => setEditOpen(true)
     const handleEditClose = () => {
         setEditOpen(false)
         console.log('EDIT CLOSE TRIGGERED, EDIT OPEN STATUS: ', editOpen)
     }
 
+    //set state for cards
     const [producer, setProducer] = useState(bottle.producer)
     const [vintage, setVintage] = useState(bottle.vintage)
     const [wineName, setWineName] = useState(bottle.wineName)
@@ -26,6 +28,11 @@ const BottleItem = ({ bottle }) => {
     const [location, setLocation] = useState(bottle.location)
     const [type, setType] = useState(bottle.type)
 
+    //open delete modal
+    const [deleteOpen, setDeleteOpen] = useState(false)
+    const handleDeleteOpen = () => setDeleteOpen(true)
+    const handleDeleteClose = () => setDeleteOpen(false)
+
 
     const onSubmit = e => {
         const bottleId = bottle._id
@@ -34,6 +41,11 @@ const BottleItem = ({ bottle }) => {
         e.preventDefault()
         console.log('BOTTLE IN ONSUBMIT FROM BOTTLEITEM: ', bottle)
         dispatch(editBottle({ bottleId, producer, vintage, wineName, variety, region, quantity, notes, location, type }))
+    }
+
+    const onDelete = () => {
+        dispatch(deleteBottle(bottle._id))
+
     }
 
     return (
@@ -58,12 +70,30 @@ const BottleItem = ({ bottle }) => {
             <p>{bottle.notes ? 'notes: ' + bottle.notes : ''}</p>
             {bottle.notes ? <Divider variant='middle' /> : ''}
             <p>{bottle.location ? 'cellar location: ' + bottle.location : ''}</p>
-            <button className="close" onClick={() => dispatch(deleteBottle(bottle._id))}>x</button>
+            <Button className="close" onClick={() => dispatch(deleteBottle(bottle._id))}>x</Button>
+
+            <Modal
+                open={deleteOpen}
+                onClose={handleDeleteClose}
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    
+                }}
+            >
+                <Card>
+                    <p>delete?</p>
+                    <Button onClick={onDelete}>yes</Button>
+                    <Button onClick={handleDeleteClose}>no</Button>
+                </Card>
+            </Modal>
+
             <Modal
                 open={editOpen}
                 onClose={handleEditClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+                aria-labelledby="edit-bottle-form"
+                aria-describedby="edit-bottle-form"
                 style={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -138,7 +168,7 @@ const BottleItem = ({ bottle }) => {
                                         value={type}
                                         onChange={(e) => setType(e.target.value)}
                                     >
-                                        <option value="" selected disabled hidden>choose wine type</option>
+                                        <option value="" defaultValue disabled hidden>choose wine type</option>
                                         <option value="red wine">red wine</option>
                                         <option value="white wine">white wine</option>
                                         <option value="sparkling wine">sparkling wine</option>
