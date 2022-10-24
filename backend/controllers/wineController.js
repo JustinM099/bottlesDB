@@ -80,7 +80,7 @@ const editWine = asyncHandler(async (req, res) => {
         throw new Error('no such bottle found')
     }
 
-
+    //TODO: figure out why this isnt working
     //check for user
     // if (!req.user) {
     //     res.status(401)

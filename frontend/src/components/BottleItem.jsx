@@ -13,7 +13,7 @@ const BottleItem = ({ bottle }) => {
     //open edit form
     const [editOpen, setEditOpen] = useState(false)
     const handleEditOpen = () => setEditOpen(true)
-    const handleEditClose = () => {
+    const handleEditClose = () => { //TODO: figure out why this doesn't work
         setEditOpen(false)
         console.log('EDIT CLOSE TRIGGERED, EDIT OPEN STATUS: ', editOpen)
     }
@@ -31,7 +31,7 @@ const BottleItem = ({ bottle }) => {
 
     //open delete modal
     const [deleteOpen, setDeleteOpen] = useState(false)
-    const handleDeleteOpen = () => setDeleteOpen(true)
+    const handleDeleteOpen = () => setDeleteOpen(true) //TODO: complete delete modal(dialog?)
     const handleDeleteClose = () => setDeleteOpen(false)
 
 
@@ -51,10 +51,6 @@ const BottleItem = ({ bottle }) => {
 
     return (
         <Card className="bottle" onClick={handleEditOpen}>
-
-            {/* <div>
-                {new Date(bottle.createdAt).toLocaleString('en-US')}
-            </div> */}
             <h2>{bottle.producer}</h2>
             <p>{bottle.vintage ? 'vintage: ' + bottle.vintage : ''}</p>
             {bottle.vintage ? <Divider variant='middle' /> : ''}
