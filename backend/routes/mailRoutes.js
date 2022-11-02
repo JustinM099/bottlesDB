@@ -13,8 +13,6 @@ router.post('/', (req, res) => {
     </ul>
     <p>bottlesDb</p>
     `
-})
-
 //create reusable transporter object using the default SMTP transport
 const main = async () => {
 
@@ -29,4 +27,21 @@ const main = async () => {
             pass: testAccount.pass
         }
     })
+    let info = await transporter.sendMail({
+    from: '"bottlesDb" <bottlesdb@gmail.com>',
+    to: req.body.email,
+    subject: 'your new bottlesDb account',
+    text: 'welcome to bottlesDb',
+    html: output
+    })
+    
+    res.status(200).json(info)
+
 }
+
+main().catch(console.error)
+
+
+})
+
+module.exports = router

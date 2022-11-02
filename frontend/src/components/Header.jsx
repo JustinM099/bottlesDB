@@ -30,7 +30,7 @@ function Header() {
         e.preventDefault();
         console.log("SEARCH TRIGGERED. QUERY: ", query);
         dispatch(searchBottles(query));
-        setQuery('');
+        // setQuery('');
     };
 
     const onClearSearch = (e) => {
