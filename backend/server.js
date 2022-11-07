@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.use('/api/wines', require('./routes/wineRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
+app.use('/api/mail', require('./routes/mailRoutes'))
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../frontend/build')))
