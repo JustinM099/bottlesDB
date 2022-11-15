@@ -114,12 +114,18 @@ hr {
   margin: 10px 0 !important;
   padding: 20px 0 10px !important;
   position: relative !important;
+  transition: transform .3s;
 }
 
 .bottle:hover {
   box-shadow: 0 5px 15px rgb(14, 13, 13);
-  transform: translateY(-7px);
+  transform: translateY(-1rem);
+  transition: .3s;
   cursor: pointer;
+}
+
+.bottle:hover~.bottle {
+  transform: (translateX(130px)) !important
 }
 
 .bottle .close {
